@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using TMPro;
 
@@ -7,6 +6,8 @@ public class CoinManager : MonoBehaviour
     public static CoinManager instance;
     public TextMeshProUGUI scoreText;
     private int score = 0;
+
+    public int Score { get { return score; } }
 
     private void Awake()
     {
