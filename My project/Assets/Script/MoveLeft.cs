@@ -17,7 +17,7 @@ public class MoveLeft : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(Vector2.left * speed * Time.deltaTime);
+        transform.Translate(Vector2.left * speed * GameSpeed.Multiplier * Time.deltaTime);
 
         float halfW = cam.orthographicSize * cam.aspect;
         float leftEdge = cam.transform.position.x - halfW;

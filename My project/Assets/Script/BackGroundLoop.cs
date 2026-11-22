@@ -19,7 +19,7 @@ public class BackgroundLoop : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(Vector2.left * speed * Time.deltaTime);
+        transform.Translate(Vector2.left * speed * GameSpeed.Multiplier * Time.deltaTime);
 
         if (transform.position.x < startX - width * 1.5f)
         {
