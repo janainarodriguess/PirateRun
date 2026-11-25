@@ -3,17 +3,25 @@ using UnityEngine;
 public class BackgroundLoop : MonoBehaviour
 {
     public float speed = 3f;
-    public int index = 0;
+    public int index = 0;            // 0, 1, 2, 3 em cada cópia
+    public int totalImages = 4;      // quantas cópias existem
+    public float overlap = 0.05f;    // sobreposição para esconder a linha
 
-    float width;
+    float step;
     float startX;
 
     void Start()
     {
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        width = sr.bounds.size.x;
-        startX = transform.position.x;
-        transform.position += new Vector3(index * width, 0, 0);
+        float width = sr.bounds.size.x;
+        step = width - overlap;
+
+        // referência igual para todas as cópias, baseada na câmera
+        Camera cam = Camera.main;
+        float leftEdge = cam.transform.position.x - cam.orthographicSize * cam.aspect;
+        startX = leftEdge + width / 2f;
+
+        transform.position = new Vector3(startX + index * step, transform.position.y, transform.position.z);
         sr.flipX = (index % 2 == 1);
     }
 
@@ -21,9 +29,9 @@ public class BackgroundLoop : MonoBehaviour
     {
         transform.Translate(Vector2.left * speed * GameSpeed.Multiplier * Time.deltaTime);
 
-        if (transform.position.x < startX - width * 1.5f)
+        if (transform.position.x < startX - step * 1.5f)
         {
-            transform.position += new Vector3(width * 4f, 0, 0);
+            transform.position += new Vector3(step * totalImages, 0, 0);
         }
     }
 }

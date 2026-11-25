@@ -40,4 +40,12 @@ public class GameOverManager : MonoBehaviour
         Time.timeScale = 1f;
         Application.Quit();
     }
+    public void SairDoJogo()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;   // para o Play no editor
+#else
+    Application.Quit();                                // fecha o jogo no build
+#endif
+    }
 }
