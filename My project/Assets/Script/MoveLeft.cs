@@ -5,7 +5,7 @@ public class MoveLeft : MonoBehaviour
     public float speed = 3f;
     public float minGap = 6f;
     public float maxGap = 14f;
-    public bool reciclar = true;   // pedras: marcado | moedas do spawner: desmarcado
+    public bool reciclar = true;   
 
     Camera cam;
     SpriteRenderer sr;

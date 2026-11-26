@@ -3,9 +3,9 @@ using UnityEngine;
 public class CoinSpawner : MonoBehaviour
 {
     public GameObject coinPrefab;
-    public float velocidade = 3f;             // mesma velocidade das pedras
-    public float espacamento = 1.2f;          // distância entre moedas do grupo
-    public float distanciaEntreGrupos = 8f;   // espaço vazio entre grupos
+    public float velocidade = 3f;             
+    public float espacamento = 1.2f;          
+    public float distanciaEntreGrupos = 8f;   
 
     [Header("Grupo no chão")]
     public int moedasNoChao = 3;
@@ -20,7 +20,6 @@ public class CoinSpawner : MonoBehaviour
     float proximaDistancia = 0f;
     void Start()
     {
-        // apaga as moedas antigas colocadas à mão na cena
         foreach (GameObject obj in gameObject.scene.GetRootGameObjects())
         {
             string n = obj.name;
@@ -51,8 +50,7 @@ public class CoinSpawner : MonoBehaviour
 
             GameObject c = Instantiate(coinPrefab, new Vector3(xInicio + i * espacamento, y, 0f), Quaternion.identity);
 
-            // tira o movimento antigo (que reciclava a moeda) e põe o novo
-            Destroy(c.GetComponent<MoveLeft>());
+                     Destroy(c.GetComponent<MoveLeft>());
             c.AddComponent<MoedaMover>().velocidade = velocidade;
         }
 

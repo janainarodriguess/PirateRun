@@ -43,9 +43,9 @@ public class GameOverManager : MonoBehaviour
     public void SairDoJogo()
     {
 #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;   // para o Play no editor
+        UnityEditor.EditorApplication.isPlaying = false;   
 #else
-    Application.Quit();                                // fecha o jogo no build
+    Application.Quit();                                
 #endif
     }
 }

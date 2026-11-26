@@ -6,6 +6,6 @@ public class GameSpeed : MonoBehaviour
 
     void Awake()
     {
-        Multiplier = 1f;   // reinicia a cada partida
+        Multiplier = 1f;  
     }
 }

@@ -3,9 +3,9 @@ using UnityEngine;
 public class BackgroundLoop : MonoBehaviour
 {
     public float speed = 3f;
-    public int index = 0;            // 0, 1, 2, 3 em cada cópia
-    public int totalImages = 4;      // quantas cópias existem
-    public float overlap = 0.05f;    // sobreposição para esconder a linha
+    public int index = 0;            
+    public int totalImages = 4;      
+    public float overlap = 0.05f;    
 
     float step;
     float startX;
@@ -16,8 +16,7 @@ public class BackgroundLoop : MonoBehaviour
         float width = sr.bounds.size.x;
         step = width - overlap;
 
-        // referência igual para todas as cópias, baseada na câmera
-        Camera cam = Camera.main;
+                Camera cam = Camera.main;
         float leftEdge = cam.transform.position.x - cam.orthographicSize * cam.aspect;
         startX = leftEdge + width / 2f;
 
