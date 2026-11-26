@@ -3,15 +3,9 @@ using UnityEngine;
 public class CoinCollector : MonoBehaviour
 {
     public int Points = 1;
+    public AudioClip somMoeda;
+    [Range(0f, 1f)] public float volumeMoeda = 0.3f;
     private bool collected = false;
-    private MoveLeft mover;
-    private SpriteRenderer sr;
-
-    private void Start()
-    {
-        mover = GetComponent<MoveLeft>();
-        sr = GetComponentInChildren<SpriteRenderer>();
-    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -26,23 +20,12 @@ public class CoinCollector : MonoBehaviour
                 CoinManager.instance.AddPoints(Points);
             }
 
-            Reaparecer();
-            collected = false;
+            if (somMoeda != null)
+            {
+                AudioSource.PlayClipAtPoint(somMoeda, Camera.main.transform.position, volumeMoeda);
+            }
+
+            Destroy(gameObject);
         }
-    }
-
-    private void Reaparecer()
-    {
-        Camera cam = Camera.main;
-        float halfW = cam.orthographicSize * cam.aspect;
-        float rightEdge = cam.transform.position.x + halfW;
-        float halfObj = (sr != null) ? sr.bounds.extents.x : 0.5f;
-
-        float minGap = (mover != null) ? mover.minGap : 6f;
-        float maxGap = (mover != null) ? mover.maxGap : 14f;
-
-        Vector3 pos = transform.position;
-        pos.x = rightEdge + halfObj + Random.Range(minGap, maxGap);
-        transform.position = pos;
     }
 }

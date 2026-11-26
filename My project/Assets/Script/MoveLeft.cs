@@ -5,6 +5,7 @@ public class MoveLeft : MonoBehaviour
     public float speed = 3f;
     public float minGap = 6f;
     public float maxGap = 14f;
+    public bool reciclar = true;   // pedras: marcado | moedas do spawner: desmarcado
 
     Camera cam;
     SpriteRenderer sr;
@@ -26,9 +27,16 @@ public class MoveLeft : MonoBehaviour
 
         if (transform.position.x + halfObj < leftEdge)
         {
-            Vector3 pos = transform.position;
-            pos.x = rightEdge + halfObj + Random.Range(minGap, maxGap);
-            transform.position = pos;
+            if (reciclar)
+            {
+                Vector3 pos = transform.position;
+                pos.x = rightEdge + halfObj + Random.Range(minGap, maxGap);
+                transform.position = pos;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
